@@ -42,29 +42,31 @@ public class LinkedList<E extends Comparable<E>> {
             tail = head;
 
         }else{
-            add(e, tail, 0);
-
+            Boolean added = false;
+            Node<E> node = new Node<>(e);
+            for(int i = 0; i < size && !added; i++){
+                if(get(i).compareTo(e) <= 0){
+                    if(getNode(i) == head){
+                        head.setPrevious(node);
+                        node.setNext(head);
+                        head = node;
+                    }else{
+                        node.setNext(getNode(i));
+                        node.setPrevious(getNode(i).getPrevious());
+                        getNode(i).getPrevious().setNext(node);
+                        getNode(i).setPrevious(node);
+                    }
+                    added = true;
+                }
+            }
+            if(added == false){
+                tail.setNext(node);
+                node.setPrevious(tail);
+                tail = node;
+            }
         }
 
         size += 1;
-    }
-
-    private void add(E e, Node<E> temp, int vali) {
-
-        if(vali == 0){
-            temp.setNext(new Node<E>(e));
-            temp.getNext().setPrevious(temp);
-            tail = temp.getNext();
-            vali += 1;
-        }
-
-        if(temp.getPrevious() != null && vali == 1){
-            add(e, temp.getPrevious(), vali);
-
-        }else{
-            head = temp;
-        }
-
     }
 
     public int indexOf(E e){
