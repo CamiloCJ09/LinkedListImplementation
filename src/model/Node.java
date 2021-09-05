@@ -6,7 +6,6 @@ public class Node<E> {
     private E item;
     private Node<E> next;
     private Node<E> previous;
-    private Node<E> root;
 
     public Node(E element) {
         this.item = element;
@@ -15,13 +14,6 @@ public class Node<E> {
 
     }
 
-    public Node<E> getRoot() {
-        return root;
-    }
-
-    public void setRoot(Node<E> root) {
-        this.root = root;
-    }
 
     public void setItem(E item) {
         this.item = item;

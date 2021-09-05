@@ -45,7 +45,7 @@ public class LinkedList<E extends Comparable<E>> {
             Boolean added = false;
             Node<E> node = new Node<>(e);
             for(int i = 0; i < size && !added; i++){
-                if(get(i).compareTo(e) <= 0){
+                if(get(i).compareTo(e) >= 0){
                     if(getNode(i) == head){
                         head.setPrevious(node);
                         node.setNext(head);
@@ -131,30 +131,9 @@ public class LinkedList<E extends Comparable<E>> {
         size -= 1;
     }
 
-    public void arrayToMeList(ArrayList<E> array){
-
-        head = null;
-        tail = null;
-
-        for (int i = 0; i < array.size(); i++){
-            add(array.get(i));
-
-        }
 
 
-    }
 
-    public ArrayList<E> toArray(){
-        ArrayList<E> array = new ArrayList<E>();
-
-        for (int i = 0; i < size; i++){
-            array.add(get(i));
-
-        }
-
-        return array;
-
-    }
 
 
 
